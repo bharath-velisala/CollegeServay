@@ -1,5 +1,8 @@
 package com.mindtree.collageServay.services;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -60,17 +63,30 @@ public class Service {
 	
 	
 	public void fetchAllStudents() throws ServiceException {
-		
-		List<String> studentDetails;
-		try {
-			studentDetails = dao.allCollegeDetailsSql();
-			for(String s:studentDetails) {
-				System.out.println(s);
+		List<String> allCollegeData=new ArrayList<String>();
+			try {
+				ResultSet rs=dao.allCollegeDetailsSql();
+				while (rs.next()) {
+					String temp = "CollegeName: '" + rs.getString("collegeName") + "' Strength: '" + rs.getInt("strength")
+							+ "' studentName: '" + rs.getString("studentName") + "' Age:'" + rs.getInt("age")
+							+ "' subject: '" + rs.getString("subject") + "'";
+					allCollegeData.add(temp);
+				}
+			} catch (DaoEcxeption e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-		} catch (DaoEcxeption e) {
-			throw new ServiceException("error while fetching all college details details");
-		}
-		
+			
+			if(allCollegeData.isEmpty()) {
+				throw new ServiceException("error while fetching college data");
+			}else {
+				for(String s:allCollegeData) {
+					System.out.println(s);
+				}
+			}
 		
 	}
 	
@@ -80,14 +96,29 @@ public class Service {
 	
 	
 	public void specificData()throws ServiceException{
-		List<String> specificdata;
+		List<String> specificdata=new ArrayList<String>();
 		try {
-			specificdata = dao.specificDataSql();
+			ResultSet rs = dao.specificDataSql();
+			while (rs.next()) {
+				String temp = "collegeName: '" + rs.getString("collegeName") + "' strength: '" + rs.getInt("strength")
+						+ "' StudentName: '" + rs.getString("StudentName") + "' Age: '" + rs.getInt("age")
+						+ "' subject: '" + rs.getString("subject") + "'";
+				specificdata.add(temp);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (DaoEcxeption e) {
+			
+		}
+		
+		if(specificdata.isEmpty()) {
+			throw new ServiceException("data not found with given inputs");
+		}else {
 			for(String s:specificdata) {
 				System.out.println(s);
 			}
-		} catch (DaoEcxeption e) {
-			throw new ServiceException("data not found with given inputs");
 		}
 	}
 	
@@ -95,7 +126,20 @@ public class Service {
 	
 	
 	public List<College>previousData(List<College>college){
-			college=dao.fetchingData();
+		
+			ResultSet rs=dao.fetchingData();
+			
+			try {
+				while (rs.next()) {
+					College c = new College();
+					c.setCollageName(rs.getString("collegeName"));
+					c.setStrength(rs.getInt("strength"));
+					college.add(c);
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			return college;
 		
 	}

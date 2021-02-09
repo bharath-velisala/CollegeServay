@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import com.google.protobuf.Message;
 import com.mindtree.collageServay.Entity.College;
 import com.mindtree.collageServay.Entity.Student;
 import com.mindtree.collageServay.Exception.ServiceException;
