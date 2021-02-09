@@ -18,7 +18,6 @@ public class App extends Service{
 		List<College>college=new ArrayList<College>();
 		List<Student>student=new ArrayList<Student>();
 		college=app.previousData(college);
-		///////////////gdfgdgdfg
 		
 		do {
 			System.out.println("press 1 to add college");
