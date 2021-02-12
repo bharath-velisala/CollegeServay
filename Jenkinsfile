@@ -1,6 +1,4 @@
-pipeline{
-    agent any
-    stages{
+node{
         stage('cloning the code'){
             git 'https://github.com/bharath-velisala/CollegeServay.git'
         }
@@ -13,5 +11,4 @@ pipeline{
         stage('maven package'){
             sh 'mvn package'
         }
-    }
 }
