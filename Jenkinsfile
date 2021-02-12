@@ -1,4 +1,5 @@
 pipeline{
+    agent any
     stages{
         stage('cloning the code'){
             git 'https://github.com/bharath-velisala/CollegeServay.git'
