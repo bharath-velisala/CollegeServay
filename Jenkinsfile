@@ -3,6 +3,7 @@ pipeline{
         tools{
                 maven 'maven-3'
         }
+        stages{
         stage('maven clean'){
             sh 'mvn clean'
         }
@@ -11,5 +12,6 @@ pipeline{
         }
         stage('maven package'){
             sh 'mvn package'
+        }
         }
 }
