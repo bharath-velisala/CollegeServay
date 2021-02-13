@@ -1,39 +1,33 @@
-pipeline {
-     
-  tools{
-    maven 'maven-3.6.3'
-  }
-  
-stages {
-    
-  stage('Maven-Clean') {
-    steps{
-      sh 'mvn clean'
+pipeline{
+    agent any
+
+    tools{
+        maven 'maven-3.6.3'
     }
-   
-  }
-    
- stage('Maven-Compile') {
-   steps{
-     sh 'mvn compile'
-   }
-   
- }
- stage('Maven-test'){
-   steps{
-     sh 'mvn test'
-   }
-   
-  }
-   stage('Maven-Package') {
-     steps{
-       sh 'mvn package'
-     }
-   
-  } 
-  
+
+    stages{
+        stage('maven clean'){
+            steps{
+                sh 'mvn clean'
+            }
+        }
+
+        stage('maven Build'){
+            steps{
+                sh 'mvn Build'
+            }
+        }
+
+        stage('maven test'){
+            steps{
+                sh 'mvn test'
+            }
+        }
+
+        stage(maven package){
+            steps{
+                sh 'mvn package'
+            }
+        }
+    }
 }
-}
-
-
-
