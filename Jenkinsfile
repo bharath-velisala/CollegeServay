@@ -1,6 +1,6 @@
 node{
-        stage('cloning the code'){
-            git 'https://github.com/bharath-velisala/CollegeServay.git'
+        tools{
+                maven 'maven-3'
         }
         stage('maven clean'){
             sh 'mvn clean'
