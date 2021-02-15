@@ -1,10 +1,14 @@
 pipeline{
     agent any
 
+    tools{
+        maven 'maven'
+    }
+
     stages{
         stage('maven clean'){
             steps{
-                sh 'sudo mvn clean'
+                sh 'mvn clean'
             }
         }
 
@@ -20,7 +24,7 @@ pipeline{
             }
         }
 
-        stage('maven package'){
+        stage(maven package){
             steps{
                 sh 'mvn package'
             }
