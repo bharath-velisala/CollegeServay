@@ -14,19 +14,19 @@ pipeline{
 
         stage('maven compile'){
             steps{
-                sh 'mvn compile'
+                bat 'mvn compile'
             }
         }
 
         stage('maven test'){
             steps{
-                sh 'mvn test'
+                bat 'mvn test'
             }
         }
 
         stage('maven package'){
             steps{
-                sh 'mvn package'
+                bat 'mvn package'
             }
         }
     }
