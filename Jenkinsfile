@@ -1,28 +1,40 @@
-pipeline {
+pipeline{
     agent any
-    stages {
-        stage('SCM') {
-            steps {
-                git url: 'https://github.com/bharath-velisala/CollegeServay.git'
+
+    tools{
+        maven 'maven'
+    }
+
+    stages{
+        stage('maven clean'){
+            steps{
+                bat 'mvn clean'
             }
         }
-        stage('build && SonarQube analysis') {
-            steps {
-                withSonarQubeEnv('sonarcube') {
-                    // Optionally use a Maven environment you've configured already
-                    withMaven(maven:'maven') {
-                        bat 'mvn clean package sonar:sonar'
-                    }
-                }
+
+        stage('maven compile'){
+            steps{
+                bat 'mvn compile'
             }
         }
-        stage("Quality Gate") {
-            steps {
-                timeout(time: 1, unit: 'HOURS') {
-                    // Parameter indicates whether to set pipeline to UNSTABLE if Quality Gate fails
-                    // true = set pipeline to UNSTABLE, false = don't
-                    waitForQualityGate abortPipeline: true
+
+        stage('sonar analysis'){
+            steps{
+            withSonarQubeEnv('sonarcube'){
+                bat 'mvn sonar:sonar'
+            }
                 }
+        }
+
+        stage('maven test'){
+            steps{
+                bat 'mvn test'
+            }
+        }
+
+        stage('maven package'){
+            steps{
+                bat 'mvn package'
             }
         }
     }
