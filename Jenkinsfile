@@ -3,6 +3,7 @@ pipeline{
 
     tools{
         maven 'maven'
+        jdk 'java15'
     }
 
     stages{
