@@ -21,9 +21,9 @@ pipeline{
         stage('sonar analysis'){
             steps{
             withSonarQubeEnv('sonar'){
-                bat 'mvn sonar:sonar' 
+                bat 'mvn sonar:sonar'
             }
-                }   
+                }
         }
 
         stage('maven test'){
