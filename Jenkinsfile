@@ -21,7 +21,7 @@ pipeline{
 
         stage('sonar analysis'){
             steps{
-            withSonarQubeEnv('sonarcube'){
+            withSonarQubeEnv('sonarqube'){
                 bat 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar'
             }
                 }
