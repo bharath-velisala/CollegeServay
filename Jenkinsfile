@@ -22,7 +22,7 @@ pipeline{
         stage('sonar analysis'){
             steps{
                 withSonarQubeEnv('sonarcube'){
-                    withMaven(mavne:'maven'){
+                    withMaven(maven:'maven'){
                         bat 'mvn sonar:sonar'
                     }
                 }
