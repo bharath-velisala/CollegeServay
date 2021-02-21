@@ -23,7 +23,10 @@ pipeline{
             steps{
                 withSonarQubeEnv('sonarcube'){
                     withMaven(maven:'maven'){
-                        bat 'mvn sonar:sonar'
+                        bat 'mvn sonar:sonar\
+                        -Dsonar.projectKey=collegeServay \
+                        -Dsonar.host.url=http://localhost:9000 \
+                        -Dsonar.login=d075db72fdd0f01250743a33e3578453544fd495'
                     }
                 }
             }
