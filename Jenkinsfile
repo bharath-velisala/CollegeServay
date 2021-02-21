@@ -25,7 +25,7 @@ pipeline{
                     withMaven(maven:'maven'){
                         bat 'mvn sonar:sonar\
                         -Dsonar.projectKey=collegeServay \
-                        -Dsonar.host.url=http://localhost:9000\
+                        -Dsonar.host.url=http://localhost:9000\'
                     }
                 }
             }
