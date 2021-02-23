@@ -9,12 +9,12 @@ pipeline{
     stages{
         stage('clone'){
             steps{
-            git 'https://github.com/bharath-velisala/CollegeServay'
+            sh 'sudo git clone https://github.com/bharath-velisala/CollegeServay'
             }
         }
         stage('maven clean'){
             steps{
-                sh 'mvn clean'
+                sh  'mvn clean'
             }
         }
 
