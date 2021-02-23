@@ -20,7 +20,6 @@ pipeline{
         }
 
         stage('sonar analysis'){
-            try{
             steps{
                     withSonarQubeEnv('sonarcube'){
                     withMaven(maven:'maven'){
@@ -29,18 +28,7 @@ pipeline{
 
                 }
                 }
-                }catch(err){
-                     mail bcc: '',
-                    body: 'sonar analysis failed in jenkins pipeline',
-                    cc: '',
-                    from: '',
-                    replyTo: '', 
-                    subject: 'sonar analysis failed', 
-                    to: 'bharath.velisala@gmail.com'
             }
-            }
-
-        }
 
         stage('maven test'){
             steps{
@@ -90,3 +78,4 @@ pipeline{
          }
      }
     }
+}
