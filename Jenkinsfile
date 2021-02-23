@@ -65,5 +65,15 @@ pipeline{
     buildNumber: '1'
 )
      }}
+
+     stage('email notification'){
+         mail bcc: '',
+          body: 'pipeline code executed successfully with out any build faliures',
+           cc: '',
+            from: '',
+             replyTo: '', 
+             subject: 'pipeline executed successfully', 
+             to: 'bharath.velisala@gmail.com'
+     }
     }
 }
