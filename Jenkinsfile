@@ -21,13 +21,14 @@ pipeline{
 
         stage('sonar analysis'){
             steps{
-                try{
+                
                     withSonarQubeEnv('sonarcube'){
                     withMaven(maven:'maven'){
+                        try{
                         bat 'mvn sonar:sonar'
-                    }
+                            }
                 }
-                }catch(Exception e){
+                }catch(err){
                      mail bcc: '',
                     body: 'sonar analysis failed in jenkins pipeline',
                     cc: '',
