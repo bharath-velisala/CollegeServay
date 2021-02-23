@@ -8,7 +8,9 @@ pipeline{
 
     stages{
         stage('clone'){
+            steps{
             git 'https://github.com/bharath-velisala/CollegeServay'
+            }
         }
         stage('maven clean'){
             steps{
