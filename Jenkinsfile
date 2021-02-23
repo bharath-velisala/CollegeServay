@@ -9,13 +9,13 @@ pipeline{
     stages{
         stage('maven clean'){
             steps{
-                bat 'mvn clean'
+                sh 'mvn clean'
             }
         }
 
         stage('maven compile'){
             steps{
-                bat 'mvn compile'
+                sh 'mvn compile'
             }
         }
 
@@ -23,7 +23,7 @@ pipeline{
             steps{
                     withSonarQubeEnv('sonarcube'){
                     withMaven(maven:'maven'){
-                        bat 'mvn sonar:sonar'
+                        sh 'mvn sonar:sonar'
                             }
 
                 }
@@ -32,13 +32,13 @@ pipeline{
 
         stage('maven test'){
             steps{
-                bat 'mvn test'
+                sh 'mvn test'
             }
         }
 
         stage('maven package'){
             steps{
-                bat 'mvn package'
+                sh 'mvn package'
             }
         }
 
@@ -78,4 +78,5 @@ pipeline{
          }
      }
     }
+
 }
