@@ -7,20 +7,15 @@ pipeline{
     }
 
     stages{
-        stage('clone'){
-            steps{
-            sh 'sudo git clone https://github.com/bharath-velisala/CollegeServay'
-            }
-        }
         stage('maven clean'){
             steps{
-                sh  'mvn clean'
+                bat  'mvn clean'
             }
         }
 
         stage('maven compile'){
             steps{
-                sh 'mvn compile'
+                bat 'mvn compile'
             }
         }
 
@@ -28,7 +23,7 @@ pipeline{
             steps{
                     withSonarQubeEnv('sonarcube'){
                     withMaven(maven:'maven'){
-                        sh 'mvn sonar:sonar'
+                        bat 'mvn sonar:sonar'
                             }
 
                 }
@@ -37,13 +32,13 @@ pipeline{
 
         stage('maven test'){
             steps{
-                sh 'mvn test'
+                bat 'mvn test'
             }
         }
 
         stage('maven package'){
             steps{
-                sh 'mvn package'
+                bat 'mvn package'
             }
         }
 
