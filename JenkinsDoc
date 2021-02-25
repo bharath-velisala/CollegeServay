@@ -60,7 +60,7 @@ pipeline{
 
 
         rtDownload (
-        serverId: "ARTIFACTORY-SERVER",
+        serverId: "Jfrog",
         spec:
               """{
                 "files": [
