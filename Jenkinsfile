@@ -7,7 +7,7 @@ pipeline{
     }
 
     stages{
-        stage('maven clean'){
+        stage('mvn clean'){
             steps{
                 bat  'mvn clean'
             }
