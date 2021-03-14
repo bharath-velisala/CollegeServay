@@ -72,7 +72,7 @@ pipeline{
               }"""
       )
        sshagent(['ed7c8a08-d943-4a66-a42c-e5e719bdeb9d']){
-                    sh 'scp -r /var/jenkins_home/workspace/collegaServay/artifacts/*.jar ubuntu@13.127.162.79:/home/ubuntu/artifacts'
+                    sh 'scp -r /var/jenkins_home/workspace/collegaServay/artifacts/*.jar ubuntu@65.0.20.153:/home/ubuntu/artifacts'
         }
             mail bcc: '', body: 'build was successful ', cc: '', from: '', replyTo: '', subject: 'build successful', to: 'bharath.velisala@gmail.com'
 
